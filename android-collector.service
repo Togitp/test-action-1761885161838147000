@@ -1,0 +1,16 @@
+[Unit]
+Description=Android Cihaz Bilgi Toplayıcı
+After=network.target local-fs.target
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/adb kill-server
+ExecStart=/usr/local/bin/android_collect.sh
+Restart=on-failure
+RestartSec=5
+StandardOutput=tty
+StandardError=tty
+TTYPath=/dev/tty1
+
+[Install]
+WantedBy=multi-user.target
